@@ -1,55 +1,1188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon</title>
+  <title>Anikeev Lab — Engineering & AI Architecture Lab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Geologica:ital,wght@0,100..900;1,100..900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #6b7280;
+      --border: rgba(0, 0, 0, 0.08);
+      --cta-green: #ebffb1;
+      --cta-green-hover: #e0fe92;
+      --cta-border: #ade900;
+      --accent-orange: #FF631F;
+      --header-border: #e6e6e6;
+      --bg: #FAF9F7;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      font-family: 'Geologica', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(42.4% 36.95% at 50% 50%, rgba(250, 249, 247, 0.70) 0%, rgba(250, 249, 247, 0.00) 100%),
+        radial-gradient(97.22% 78.13% at 50% -17.36%, #5DB3CF 22.39%, rgba(145, 201, 220, 0.56) 58.43%, rgba(250, 249, 247, 0.00) 85.73%),
+        radial-gradient(79.49% 72.21% at 50% 0%, #8FC6D9 0%, rgba(151, 216, 238, 0.00) 100%),
+        linear-gradient(180deg, #22C9FF -26.16%, #FAF9F7 23.98%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
       min-height: 100vh;
-      background: linear-gradient(180deg, #e0f2f7 0%, #cfe9f5 30%, #fef6e0 70%, #fdfdf8 100%);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* Header — точная копия Base44 (brcTpl) */
+    .header-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 52px;
+    }
+    @media (min-width: 768px) {
+      .header-wrapper { height: 57px; }
+    }
+    @media (min-width: 1100px) {
+      .header-wrapper { height: 76px; }
+    }
+
+    .header-nav {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      height: 44px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      border: 1px solid var(--header-border);
+      border-radius: 100px;
+      padding: 0 6px 0 12px;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+    @media (min-width: 768px) {
+      .header-nav {
+        top: 13px;
+        left: 13px;
+        right: 13px;
+        padding: 0 6px 0 13px;
+      }
+    }
+    @media (min-width: 1100px) {
+      .header-nav {
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        height: 56px;
+        justify-content: center;
+        padding: 0;
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      text-decoration: none;
+      z-index: 1;
+    }
+    @media (min-width: 1100px) {
+      .logo { position: absolute; left: 13px; }
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .logo-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      text-decoration: none;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      transition: font-weight 0.2s;
+    }
+
+    .nav-links a:hover {
+      font-weight: 500;
+    }
+
+    .nav-links .chevron {
+      width: 20px;
+      height: 20px;
+      opacity: 0.8;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 100%;
+      z-index: 1;
+    }
+    @media (min-width: 1100px) {
+      .header-right { position: absolute; right: 7px; }
+    }
+
+    .header-globe {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 9px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      color: #000;
+    }
+    .header-globe svg {
+      width: 22px;
+      height: 23px;
     }
 
-    .content {
+    .header-cta {
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      background-color: var(--cta-green);
+      border: 1px solid var(--cta-border);
+      border-radius: 70px;
+      padding: 0 16px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin: 6px 0;
+      box-sizing: border-box;
+    }
+    @media (min-width: 1100px) {
+      .header-cta {
+        font-size: 16px;
+        padding: 0 24px;
+        height: 42px;
+        margin: 7px 0;
+      }
+    }
+
+    .header-cta:hover {
+      background-color: var(--cta-green-hover);
+    }
+
+    .header-spacer {
+      height: 60px;
+    }
+    @media (min-width: 768px) {
+      .header-spacer { height: 65px; }
+    }
+    @media (min-width: 1100px) {
+      .header-spacer { height: 84px; }
+    }
+
+    /* Hero — как Base44 "Turn your ideas into apps" */
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 8rem 2rem 7rem;
       text-align: center;
-      max-width: 560px;
     }
 
-    .heading {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 600;
-      color: #1a1a1a;
+    .hero-tagline {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Comfortaa', 'Geologica', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: #0f0f0f;
+    }
+
+    .hero .hero-vision {
+      font-family: 'Geologica', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: #4a4a4a;
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-founder {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+
+    .hero-founder strong {
+      color: var(--text-secondary);
+    }
+
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat {
+      text-align: center;
+      min-width: 140px;
+    }
+
+    .hero-stat-value {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
       line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hero-stat-value .hero-stat-unit {
+      font-size: 0.6em;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .hero-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .proof-badge {
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+      color: var(--text-muted);
+    }
+
+    .proof-badge strong {
+      color: var(--text-primary);
+    }
+
+    /* Sections */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
       margin-bottom: 1rem;
     }
 
-    .subheading {
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-      font-weight: 400;
+    .section-heading {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
+      color: var(--text-primary);
+    }
+
+    /* Project Cards — pill-shaped как Base44 */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 20px;
+      padding: 1.75rem 2rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .card:hover {
+      background: white;
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 1.25rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--text-secondary);
+    }
+
+    .card:hover .card-icon svg {
+      stroke: var(--text-primary);
+    }
+
+    .card-flag {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+      color: var(--text-primary);
+    }
+
+    .card-project {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-orange);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .card-tech {
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      color: var(--text-muted);
+    }
+
+    .card-status {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.65rem;
+      background: rgba(34, 197, 94, 0.12);
+      color: #15803d;
+      border-radius: 999px;
+      margin-top: 0.75rem;
+    }
+
+    .card-value {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Заголовок «От хаоса к системе» — постоянный зазор до блоков при скролле; после «сложения» уезжает вверх */
+    #departments .cases-section-header {
+      position: sticky;
+      top: calc(40vh - 8rem);
+      z-index: 10;
+      background: transparent;
+      padding-bottom: 1.5rem;
+      margin-bottom: 0;
+    }
+    #departments .cases-section-header .section-heading {
+      margin-bottom: 1rem;
+    }
+
+    /* Cases: блоки прилипают с фиксированным отступом от заголовка (одно и то же расстояние при скролле) */
+    .cases-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+    }
+
+    .cases-row {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      border-radius: 24px;
+      position: sticky;
+      top: 40vh;
+      z-index: 1;
+    }
+    .cases-row:nth-child(2) { z-index: 2; }
+    .cases-row:nth-child(3) { z-index: 3; }
+    .cases-row:nth-child(4) { z-index: 4; }
+    @media (max-width: 768px) {
+      .cases-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .case-block {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+    .cases-row .case-block:first-child {
+      border-radius: 24px 0 0 24px;
+    }
+    .cases-row .case-block:last-child {
+      border-radius: 0 24px 24px 0;
+    }
+    @media (max-width: 768px) {
+      .cases-row .case-block:first-child,
+      .cases-row .case-block:last-child {
+        border-radius: 24px;
+      }
+    }
+
+    .case-block--showcase {
+      padding: 2rem;
+      justify-content: flex-end;
+    }
+
+    .case-block--gradient-orange {
+      background: linear-gradient(135deg, #FF9A56 0%, #FFD6A5 50%, #FFF8E7 100%);
+    }
+
+    .case-block--gradient-blue {
+      background: linear-gradient(135deg, #0a2e5c 0%, #1e5a9e 50%, #4a90d9 100%);
+    }
+
+    .case-block-card {
+      background: #fff;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      overflow: hidden;
+    }
+
+    .case-block-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Картинка с домом — те же размеры, что и у остальных карточек (260px), чтобы ряд не был выше и не заезжал на заголовок */
+    .case-block--house .case-block-card img {
+      height: 260px;
+      max-height: none;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Плашка с текстом: когда по бокам пусто (узкое фото) — делаем её длиннее по высоте */
+    .case-block-card-body {
+      padding: 1.5rem 1.75rem;
+      min-height: 220px;
+    }
+
+    .case-block-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f0f0f;
+      margin-bottom: 0.5rem;
+    }
+
+    .case-block-card-desc {
+      font-size: 0.85rem;
       color: #4a4a4a;
       line-height: 1.5;
+    }
+
+    .case-block--text {
+      padding: 2.5rem;
+      justify-content: center;
+      background: #fff;
+      border: none;
+    }
+
+    .case-block--text h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #0f0f0f;
+      margin-bottom: 1rem;
+    }
+
+    .case-block--text p {
+      font-size: 1rem;
+      color: #4a4a4a;
+      line-height: 1.6;
+    }
+
+    /* Tags row — как suggestion buttons Base44 */
+    .section-prompt {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    /* Junior Corps */
+    .junior-section {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 24px;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .junior-section h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .junior-section p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    /* Designed for your stack — как Base44 Enterprise (teal block) */
+    .stack-block {
+      background: #00798C;
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+    }
+
+    .stack-heading {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .stack-heading .accent {
+      color: #EBFFB1;
+    }
+
+    .stack-desc {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .stack-logos-wrapper {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    .stack-logos {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      width: max-content;
+      animation: stack-marquee 30s linear infinite;
+    }
+
+    .stack-logos:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes stack-marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .stack-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .stack-logo:hover {
+      opacity: 1;
+    }
+
+    .stack-logo img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+    }
+
+    .stack-logo img.stack-logo-colored {
+      filter: brightness(0) invert(1);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 5rem;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+    }
+
+    .footer-divider {
+      width: 1px;
+      height: 1rem;
+      background: var(--border);
+    }
+
+    .footer-link {
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--text-primary);
+    }
+
+    @media (max-width: 1099px) {
+      .nav-links {
+        display: none;
+      }
+      .header-burger {
+        display: flex;
+      }
+    }
+    @media (min-width: 1100px) {
+      .header-burger {
+        display: none;
+      }
+      .mobile-menu {
+        display: none !important;
+      }
+    }
+    .header-burger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: #f0f0f0;
+      color: #000;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .header-burger:hover {
+      background: #e5e5e5;
+    }
+    .header-burger:focus {
+      outline: none;
+    }
+    .header-burger svg {
+      width: 20px;
+      height: 20px;
+    }
+    .header-burger[aria-expanded="true"] .header-burger-open {
+      display: none;
+    }
+    .header-burger[aria-expanded="true"] .header-burger-close {
+      display: block;
+    }
+    .header-burger-close {
+      display: none;
+    }
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .mobile-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu-panel {
+      position: absolute;
+      top: 60px;
+      right: 8px;
+      left: 8px;
+      max-width: 320px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      padding: 0.5rem 0;
+      transform: translateY(-8px);
+      transition: transform 0.2s;
+    }
+    .mobile-menu.is-open .mobile-menu-panel {
+      transform: translateY(0);
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #000;
+      text-decoration: none;
+      border: none;
+      transition: background 0.15s;
+    }
+    .mobile-menu a:hover {
+      background: #f5f5f5;
+    }
+    .mobile-menu a:first-child {
+      border-radius: 12px 12px 0 0;
+    }
+    .mobile-menu a:last-child {
+      border-radius: 0 0 12px 12px;
+    }
+    @media (max-width: 767px) {
+      .header-globe {
+        display: none;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero {
+        padding: 5rem 1.5rem 4rem;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="content">
-    <h1 class="heading">Something will be here soon</h1>
-    <p class="subheading">Тут будет скоро нечто</p>
+  <div class="header-wrapper">
+    <header class="header-nav">
+      <a href="/" class="logo" title="Anikeev Lab" aria-label="Anikeev Lab logo, homepage">
+        <span class="logo-icon" aria-hidden="true">
+          <svg width="302" height="302" viewBox="0 0 302 302" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="151" cy="151" r="151" fill="#F36224"/>
+            <rect x="50" y="207.502" width="165" height="22" rx="11" transform="rotate(-60.4247 50 207.502)" fill="white"/>
+            <rect x="86.1795" y="140" width="100.007" height="22" rx="11" transform="rotate(0.467427 86.1795 140)" fill="white"/>
+            <rect width="165" height="22" rx="11" transform="matrix(0.493567 0.869708 0.869708 -0.493567 121 74.8585)" fill="white"/>
+            <rect width="147.999" height="19.5689" rx="9.78445" transform="matrix(0.487492 -0.873127 0.866217 0.499668 110 208.222)" fill="#F8F5F5"/>
+            <rect width="88.5986" height="19.8108" rx="9.90539" transform="matrix(0.999966 0.00829217 -0.0080261 0.999968 142.052 147.437)" fill="#F8F5F5"/>
+            <rect width="147.999" height="19.5689" rx="9.78445" transform="matrix(0.487492 0.873127 0.866217 -0.499668 172.901 88.7779)" fill="#F8F5F5"/>
+          </svg>
+        </span>
+        Anikeev Lab
+      </a>
+      <nav class="nav-links">
+        <a href="#departments">Departments
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg>
+        </a>
+        <a href="#junior">Junior Corps
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg>
+        </a>
+        <a href="#tech">Tech
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg>
+        </a>
+      </nav>
+      <div class="header-right">
+        <button class="header-globe" type="button" aria-label="Language" title="Language">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="23" viewBox="0 0 22 23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="11" cy="11.5" r="9.167"/>
+            <path d="M2.75 8.57h16.5M2.75 14.987h16.5"/>
+            <path d="M11 2.154a14.03 14.03 0 0 1 3.667 9.166 14.03 14.03 0 0 1-3.666 9.167 14.03 14.03 0 0 1-3.667-9.167 14.03 14.03 0 0 1 3.667-9.166"/>
+          </svg>
+        </button>
+        <a href="mailto:hello@anikeevlab.com" class="header-cta">Start Building</a>
+        <button class="header-burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="header-burger-open" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </span>
+          <span class="header-burger-close" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </header>
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Навигация" aria-modal="true">
+    <div class="mobile-menu-panel">
+      <a href="#departments">Projects</a>
+      <a href="#junior">Junior Corps</a>
+      <a href="#tech">Tech</a>
+    </div>
+  </div>
+  </div>
+
+  <div class="header-spacer"></div>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero">
+        <p class="hero-tagline">Engineering & AI Architecture Lab</p>
+        <h1>Сложные задачи —<br>элегантные решения</h1>
+        <p class="hero-vision">
+          Anikeev Lab — это не агентство, это лаборатория системных решений. Мы берём хаотичные бизнес-задачи и превращаем их в автоматизированную инфраструктуру.
+        </p>
+        <p class="hero-founder"><strong>Александр Аникеев</strong> — Founder & Principal Architect</p>
+        <div class="hero-proof">
+          <div class="hero-stat">
+            <div class="hero-stat-value"><span class="hero-stat-counter hero-stat-counter--money" data-start="100000" data-to="120000">100 000</span><span class="hero-stat-unit"> $</span></div>
+            <div class="hero-stat-label">Заработано для клиентов</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value"><span class="hero-stat-counter" data-to="35" data-suffix="+">0</span></div>
+            <div class="hero-stat-label">Довольных клиентов</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value"><span class="hero-stat-counter" data-to="4">0</span></div>
+            <div class="hero-stat-label">Года опыта</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="departments">
+      <div class="cases-grid">
+        <div class="cases-section-header">
+          <p class="section-title">Projects</p>
+          <h2 class="section-heading">От хаоса к системе</h2>
+        </div>
+        <div class="cases-row">
+          <!-- 1. Альфа-Банк — gradient + карточка только с фото -->
+          <article class="case-block case-block--showcase case-block--gradient-blue">
+            <div class="case-block-card">
+              <img src="photos/Alfa-bank.png" alt="Инфраструктура управления мощностями">
+            </div>
+          </article>
+          <!-- 2. Rubkoff — text -->
+          <article class="case-block case-block--text">
+            <h3>Операционная система для реального сектора</h3>
+            <p>Комплексная цифровая трансформация строительных процессов. От сквозной аналитики и CRM до автоматизации логистических цепочек. Превращаем хаос строительных объектов в измеримую и управляемую структуру.</p>
+          </article>
+        </div>
+        <div class="cases-row">
+          <!-- 3. HSE Essay Bot — text -->
+          <article class="case-block case-block--text">
+            <h3>LLM-экспертиза и оценка знаний</h3>
+            <p>Внедрение больших языковых моделей в образовательные процессы. Система автоматизированного скоринга эссе с глубоким анализом контекста и обратной связью. Технологии ИИ на службе академических стандартов.</p>
+          </article>
+          <!-- 4. HSE Essay Bot — gradient + карточка только с фото -->
+          <article class="case-block case-block--showcase case-block--gradient-orange">
+            <div class="case-block-card">
+              <img src="photos/hse.JPG" alt="LLM-экспертиза и оценка знаний">
+            </div>
+          </article>
+        </div>
+        <div class="cases-row">
+          <!-- 5. Дома — только фото (полная высота, без обрезки) -->
+          <article class="case-block case-block--showcase case-block--gradient-orange case-block--house">
+            <div class="case-block-card">
+              <img src="photos/house.png" alt="Операционная система для реального сектора">
+            </div>
+          </article>
+          <!-- 6. Дома — текст отдельным блоком -->
+          <article class="case-block case-block--text">
+            <h3>Операционная система для реального сектора</h3>
+            <p>Комплексная цифровая трансформация строительных процессов. От сквозной аналитики и CRM до автоматизации логистических цепочек. Превращаем хаос строительных объектов в измеримую и управляемую структуру.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="junior">
+      <p class="section-title">The Junior Corps</p>
+      <h2 class="section-heading">Инкубатор талантов</h2>
+      <div class="junior-section">
+        <h3>Элитная команда молодых инженеров</h3>
+        <p>Команда high-potential junior talent, работающая по системе внутренней акселерации.</p>
+        <p>Создание социального лифта для гениальных разработчиков-студентов.</p>
+      </div>
+    </section>
+
+    <section id="tech">
+      <p class="section-title">Tech Stack</p>
+      <div class="stack-block">
+        <h2 class="stack-heading">Designed for <span class="accent">your stack</span></h2>
+        <p class="stack-desc">Anikeev Lab accelerates your launch with complete functionality out of the box, while also integrating seamlessly with the platforms and tools your business already runs on.</p>
+        <div class="stack-logos-wrapper">
+          <div class="stack-logos">
+            <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Python"><img src="https://cdn.simpleicons.org/python/ffffff" alt="Python"></a>
+            <a href="https://www.postgresql.org/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="PostgreSQL"><img src="https://cdn.simpleicons.org/postgresql/ffffff" alt="PostgreSQL"></a>
+            <a href="https://redis.io/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Redis"><img src="https://cdn.simpleicons.org/redis/ffffff" alt="Redis"></a>
+            <a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="FastAPI"><img src="https://cdn.simpleicons.org/fastapi/ffffff" alt="FastAPI"></a>
+            <a href="https://openai.com/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="OpenAI"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/openai.svg" alt="OpenAI" class="stack-logo-colored"></a>
+            <a href="https://ai.google.dev/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Gemini"><img src="https://cdn.simpleicons.org/googlegemini/ffffff" alt="Gemini"></a>
+            <a href="https://opencv.org/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="OpenCV"><img src="https://cdn.simpleicons.org/opencv/ffffff" alt="OpenCV"></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer" class="stack-logo" title="HTML5"><img src="https://cdn.simpleicons.org/html5/ffffff" alt="HTML5"></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer" class="stack-logo" title="CSS3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" alt="CSS3" class="stack-logo-colored"></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="stack-logo" title="JavaScript"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/javascript.svg" alt="JavaScript" class="stack-logo-colored"></a>
+            <a href="https://core.telegram.org/bots/webapps" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt="Telegram"></a>
+            <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Docker"><img src="https://cdn.simpleicons.org/docker/ffffff" alt="Docker"></a>
+            <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Git"><img src="https://cdn.simpleicons.org/git/ffffff" alt="Git"></a>
+            <a href="https://nginx.org/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Nginx"><img src="https://cdn.simpleicons.org/nginx/ffffff" alt="Nginx"></a>
+            <a href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer" class="stack-logo" title="GitHub Actions"><img src="https://cdn.simpleicons.org/githubactions/ffffff" alt="GitHub Actions"></a>
+            <!-- duplicate for seamless loop -->
+            <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Python"><img src="https://cdn.simpleicons.org/python/ffffff" alt="Python"></a>
+            <a href="https://www.postgresql.org/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="PostgreSQL"><img src="https://cdn.simpleicons.org/postgresql/ffffff" alt="PostgreSQL"></a>
+            <a href="https://redis.io/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Redis"><img src="https://cdn.simpleicons.org/redis/ffffff" alt="Redis"></a>
+            <a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="FastAPI"><img src="https://cdn.simpleicons.org/fastapi/ffffff" alt="FastAPI"></a>
+            <a href="https://openai.com/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="OpenAI"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/openai.svg" alt="OpenAI" class="stack-logo-colored"></a>
+            <a href="https://ai.google.dev/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Gemini"><img src="https://cdn.simpleicons.org/googlegemini/ffffff" alt="Gemini"></a>
+            <a href="https://opencv.org/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="OpenCV"><img src="https://cdn.simpleicons.org/opencv/ffffff" alt="OpenCV"></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer" class="stack-logo" title="HTML5"><img src="https://cdn.simpleicons.org/html5/ffffff" alt="HTML5"></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer" class="stack-logo" title="CSS3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" alt="CSS3" class="stack-logo-colored"></a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="stack-logo" title="JavaScript"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/javascript.svg" alt="JavaScript" class="stack-logo-colored"></a>
+            <a href="https://core.telegram.org/bots/webapps" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt="Telegram"></a>
+            <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Docker"><img src="https://cdn.simpleicons.org/docker/ffffff" alt="Docker"></a>
+            <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Git"><img src="https://cdn.simpleicons.org/git/ffffff" alt="Git"></a>
+            <a href="https://nginx.org/" target="_blank" rel="noopener noreferrer" class="stack-logo" title="Nginx"><img src="https://cdn.simpleicons.org/nginx/ffffff" alt="Nginx"></a>
+            <a href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer" class="stack-logo" title="GitHub Actions"><img src="https://cdn.simpleicons.org/githubactions/ffffff" alt="GitHub Actions"></a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="footer-content">
+      <span class="footer-logo">Anikeev Lab</span>
+      <span class="footer-divider"></span>
+      <a href="https://github.com/Alexaaanik" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub @Alexaaanik</a>
+    </div>
+  </footer>
+  <script>
+    (function() {
+      var burger = document.querySelector('.header-burger');
+      var menu = document.getElementById('mobile-menu');
+      if (!burger || !menu) return;
+      var panel = menu.querySelector('.mobile-menu-panel');
+      var links = menu.querySelectorAll('a');
+
+      function openMenu() {
+        menu.classList.add('is-open');
+        burger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      burger.addEventListener('click', function() {
+        if (menu.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      });
+      menu.addEventListener('click', function(e) {
+        if (e.target === menu) closeMenu();
+      });
+      links.forEach(function(a) {
+        a.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu();
+      });
+    })();
+
+    (function() {
+      var duration = 2750;
+      var moneySlowPart = 0.3;
+      var start = performance.now();
+      function format(n) { return Math.round(n).toLocaleString('ru-RU'); }
+      var tSlow = (duration - moneySlowPart * 1000) / duration;
+      if (tSlow < 0) tSlow = 0.7;
+      var counters = Array.from(document.querySelectorAll('.hero-stat-counter')).map(function(el) {
+        var from = parseInt(el.getAttribute('data-start'), 10);
+        var to = parseInt(el.getAttribute('data-to'), 10);
+        if (isNaN(from)) from = 0;
+        var suffix = el.getAttribute('data-suffix') || '';
+        var isMoney = el.classList.contains('hero-stat-counter--money');
+        return { el: el, from: from, to: to, suffix: suffix, isMoney: isMoney };
+      });
+      function step(now) {
+        var t = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - t, 2);
+        counters.forEach(function(c) {
+          var value;
+          if (c.isMoney) {
+            if (t < tSlow) {
+              var u = t / tSlow;
+              value = c.from + (18000 * (1 - Math.pow(1 - u, 1.5)));
+            } else {
+              var v = (t - tSlow) / (1 - tSlow);
+              value = 118000 + (2000 * (1 - Math.pow(1 - v, 2)));
+            }
+          } else {
+            value = c.from + (c.to - c.from) * eased;
+          }
+          c.el.textContent = format(value) + c.suffix;
+        });
+        if (t < 1) requestAnimationFrame(step);
+        else {
+          counters.forEach(function(c) {
+            c.el.textContent = format(c.to) + c.suffix;
+          });
+        }
+      }
+      requestAnimationFrame(step);
+    })();
+
+    (function() {
+      var header = document.querySelector('#departments .cases-section-header');
+      var grid = document.querySelector('#departments .cases-grid');
+      var houseRow = grid ? grid.querySelector('.cases-row:nth-child(4)') : null;
+      if (!header || !grid || !houseRow) return;
+      var ticking = false;
+      var stickTopVh = 40;
+      var tolerance = 20;
+      var approachPx = 70;
+      var stackScrollY = null;
+      var prevScrollY = 0;
+      var prevScrollTime = 0;
+      var approachStartTime = 0;
+      var approachDelayMs = 30;
+      var delayMsSlow = 30;
+      var delayMsFast = 220;
+      var speedThreshold = 0.8;
+
+      function updateHeader() {
+        var now = Date.now();
+        var scrollY = window.scrollY;
+        var dt = now - prevScrollTime;
+        var scrollSpeed = dt > 0 ? Math.abs(scrollY - prevScrollY) / dt : 0;
+        prevScrollY = scrollY;
+        prevScrollTime = now;
+
+        var houseRowTop = houseRow.getBoundingClientRect().top;
+        var stickTopPx = window.innerHeight * (stickTopVh / 100);
+        var approaching = houseRowTop <= stickTopPx + approachPx;
+
+        if (houseRowTop > stickTopPx + approachPx) {
+          stackScrollY = null;
+          approachStartTime = 0;
+          header.style.transform = '';
+        } else {
+          if (stackScrollY === null) stackScrollY = scrollY;
+          if (approachStartTime === 0) {
+            approachStartTime = now;
+            approachDelayMs = scrollSpeed >= speedThreshold ? delayMsFast : delayMsSlow;
+          }
+          var elapsed = now - approachStartTime;
+          var delayPassed = elapsed >= approachDelayMs;
+
+          var scrollDown = Math.max(0, scrollY - stackScrollY);
+          var range = approachPx - tolerance;
+          var distance = houseRowTop - (stickTopPx + tolerance);
+          var t = range <= 0 ? 1 : Math.min(1, Math.max(0, 1 - distance / range));
+          var progress = t * t * (3 - 2 * t);
+          var offset = delayPassed ? progress * scrollDown : 0;
+          header.style.transform = offset > 0 ? 'translateY(-' + offset + 'px)' : '';
+        }
+        ticking = false;
+      }
+
+      function requestTick() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateHeader);
+        }
+      }
+
+      window.addEventListener('scroll', requestTick, { passive: true });
+      window.addEventListener('resize', requestTick);
+      updateHeader();
+    })();
+  </script>
 </body>
 </html>
