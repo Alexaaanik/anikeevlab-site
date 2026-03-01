@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screen Geolocation — Anikeev Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --text-primary: #1a1a1a; --text-secondary: #4a4a4a; --text-muted: #6b7280; --border: rgba(0,0,0,0.08); --accent-orange: #FF631F; --header-border: #e6e6e6; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Geologica', sans-serif; background: radial-gradient(42.4% 36.95% at 50% 50%, rgba(250,249,247,0.7) 0%, rgba(250,249,247,0) 100%), linear-gradient(180deg, #22C9FF -26.16%, #FAF9F7 23.98%); color: var(--text-primary); line-height: 1.6; min-height: 100vh; }
+    .header-nav { position: fixed; top: 8px; left: 8px; right: 8px; height: 44px; display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid var(--header-border); border-radius: 100px; padding: 0 12px; z-index: 1000; }
+    .logo { font-size: 16px; color: #000; text-decoration: none; font-weight: 500; }
+    .nav-mini a { color: #000; text-decoration: none; font-size: 14px; }
+    .header-spacer { height: 60px; }
+    .page { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .project-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; margin-bottom: 0.5rem; }
+    .project-meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .project-revenue { font-size: 1rem; font-weight: 600; color: var(--accent-orange); margin-bottom: 1.5rem; }
+    .project-desc { font-size: 1rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 2rem; }
+    .project-desc p { margin-bottom: 0.75rem; }
+    .gallery { display: flex; flex-direction: column; gap: 1.5rem; }
+    .gallery figure { margin: 0; }
+    .gallery img { width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .gallery figcaption { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+    footer { margin-top: 3rem; padding: 1.5rem; text-align: center; border-top: 1px solid var(--border); }
+    footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header class="header-nav">
+    <a href="../../index.html" class="logo">Anikeev Lab</a>
+    <nav class="nav-mini"><a href="../../projects.html">← Все проекты</a></nav>
+  </header>
+  <div class="header-spacer"></div>
+  <main class="page">
+    <h1 class="project-title">Screen Geolocation — определение места по скриншоту</h1>
+    <p class="project-meta">Август 2023</p>
+    <p class="project-revenue">Выручка: 300 000 – 700 000 ₽/год</p>
+    <div class="project-desc">
+      <p>Анализ вида улицы (Street View), поиск улик на фото, результат с точным местом (например, 100% Рига, Латвия), сравнение с реальным местоположением. Десктоп-приложение.</p>
+      <p><strong>Потенциальный покупатель:</strong> OSINT-специалисты, журналисты, учебные курсы по геолокации, энтузиасты.</p>
+    </div>
+    <div class="gallery">
+      <figure><img src="photo_1.jpg" alt="Анализ вида"><figcaption>Шаг 1. Анализ вида улицы (Street View).</figcaption></figure>
+      <figure><img src="photo_2.jpg" alt="Подсказки"><figcaption>Дополнительный экран: подсказки или ввод.</figcaption></figure>
+      <figure><img src="photo_3.jpg" alt="Поиск улик"><figcaption>Шаг 2. Поиск улик на фото.</figcaption></figure>
+      <figure><img src="photo_4.jpg" alt="Результат"><figcaption>Шаг 3. Результат: 100% Рига, Латвия.</figcaption></figure>
+      <figure><img src="photo_5.jpg" alt="Альтернативный результат"><figcaption>Промежуточный или альтернативный результат.</figcaption></figure>
+      <figure><img src="photo_6.jpg" alt="Сравнение"><figcaption>Шаг 4. Сравнение с реальным местоположением.</figcaption></figure>
+    </div>
+  </main>
+  <footer><a href="../../projects.html">← Все проекты</a></footer>
+</body>
+</html>

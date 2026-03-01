@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubkoff — Anikeev Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --text-primary: #1a1a1a; --text-secondary: #4a4a4a; --text-muted: #6b7280; --border: rgba(0,0,0,0.08); --accent-orange: #FF631F; --header-border: #e6e6e6; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Geologica', sans-serif; background: radial-gradient(42.4% 36.95% at 50% 50%, rgba(250,249,247,0.7) 0%, rgba(250,249,247,0) 100%), linear-gradient(180deg, #22C9FF -26.16%, #FAF9F7 23.98%); color: var(--text-primary); line-height: 1.6; min-height: 100vh; }
+    .header-nav { position: fixed; top: 8px; left: 8px; right: 8px; height: 44px; display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid var(--header-border); border-radius: 100px; padding: 0 12px; z-index: 1000; }
+    .logo { font-size: 16px; color: #000; text-decoration: none; font-weight: 500; }
+    .nav-mini a { color: #000; text-decoration: none; font-size: 14px; }
+    .header-spacer { height: 60px; }
+    .page { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .project-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; margin-bottom: 0.5rem; }
+    .project-meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .project-revenue { font-size: 1rem; font-weight: 600; color: var(--accent-orange); margin-bottom: 1.5rem; }
+    .project-desc { font-size: 1rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 2rem; }
+    .project-desc p { margin-bottom: 0.75rem; }
+    .gallery { display: flex; flex-direction: column; gap: 1.5rem; }
+    .gallery figure { margin: 0; }
+    .gallery img { width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .gallery figcaption { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+    footer { margin-top: 3rem; padding: 1.5rem; text-align: center; border-top: 1px solid var(--border); }
+    footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header class="header-nav">
+    <a href="../../index.html" class="logo">Anikeev Lab</a>
+    <nav class="nav-mini"><a href="../../projects.html">← Все проекты</a></nav>
+  </header>
+  <div class="header-spacer"></div>
+  <main class="page">
+    <h1 class="project-title">Rubkoff — конфигуратор деревянных домов</h1>
+    <p class="project-meta">Май 2023</p>
+    <p class="project-revenue">Выручка: 1 000 000 – 2 500 000 ₽/год</p>
+    <div class="project-desc">
+      <p>Опрос параметров дома в боте, уточнение опций, расчёт. Mini App с рекомендациями и вариантами. Просмотр деталей проекта и стоимости.</p>
+      <p><strong>Потенциальный покупатель:</strong> Застройщики, производители домокомплектов, архитектурные бюро, риелторы загородной недвижимости.</p>
+    </div>
+    <div class="gallery">
+      <figure><img src="photo_1.jpg" alt="Опрос"><figcaption>Шаг 1. Опрос параметров дома в боте.</figcaption></figure>
+      <figure><img src="photo_2.jpg" alt="Опции"><figcaption>Дополнительный экран: уточнение или выбор опций.</figcaption></figure>
+      <figure><img src="photo_3.jpg" alt="Расчёт"><figcaption>Промежуточный результат или расчёт.</figcaption></figure>
+      <figure><img src="photo_4.jpg" alt="Mini App"><figcaption>Шаг 2. Mini App с рекомендациями и вариантами.</figcaption></figure>
+      <figure><img src="photo_5.jpg" alt="Детали и стоимость"><figcaption>Шаг 3. Просмотр деталей проекта и стоимости.</figcaption></figure>
+    </div>
+  </main>
+  <footer><a href="../../projects.html">← Все проекты</a></footer>
+</body>
+</html>

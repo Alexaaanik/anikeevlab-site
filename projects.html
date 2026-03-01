@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Проекты — Anikeev Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #6b7280;
+      --border: rgba(0, 0, 0, 0.08);
+      --cta-green: #ebffb1;
+      --cta-green-hover: #e0fe92;
+      --cta-border: #ade900;
+      --accent-orange: #FF631F;
+      --header-border: #e6e6e6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Geologica', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(42.4% 36.95% at 50% 50%, rgba(250, 249, 247, 0.70) 0%, rgba(250, 249, 247, 0.00) 100%),
+        radial-gradient(97.22% 78.13% at 50% -17.36%, #5DB3CF 22.39%, rgba(145, 201, 220, 0.56) 58.43%, rgba(250, 249, 247, 0.00) 85.73%),
+        radial-gradient(79.49% 72.21% at 50% 0%, #8FC6D9 0%, rgba(151, 216, 238, 0.00) 100%),
+        linear-gradient(180deg, #22C9FF -26.16%, #FAF9F7 23.98%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .header-wrapper { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 52px; }
+    @media (min-width: 768px) { .header-wrapper { height: 57px; } }
+    @media (min-width: 1100px) { .header-wrapper { height: 76px; } }
+    .header-nav {
+      position: fixed;
+      top: 8px; left: 8px; right: 8px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border: 1px solid var(--header-border);
+      border-radius: 100px;
+      padding: 0 6px 0 12px;
+      z-index: 1000;
+    }
+    @media (min-width: 768px) { .header-nav { top: 13px; left: 13px; right: 13px; padding: 0 6px 0 13px; } }
+    @media (min-width: 1100px) { .header-nav { top: 20px; left: 20px; right: 20px; height: 56px; justify-content: center; padding: 0; } }
+    .logo { display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 400; color: #000; text-decoration: none; z-index: 1; }
+    @media (min-width: 1100px) { .logo { position: absolute; left: 13px; } }
+    .logo-icon { width: 28px; height: 28px; flex-shrink: 0; display: block; }
+    .logo-icon svg { width: 100%; height: 100%; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .nav-links a { font-size: 16px; font-weight: 400; color: #000; text-decoration: none; padding: 8px 12px; display: flex; align-items: center; gap: 3px; transition: font-weight 0.2s; }
+    .nav-links a:hover { font-weight: 500; }
+    .nav-links .chevron { width: 20px; height: 20px; opacity: 0.8; }
+    .header-right { display: flex; align-items: center; gap: 4px; height: 100%; z-index: 1; }
+    @media (min-width: 1100px) { .header-right { position: absolute; right: 7px; } }
+    .header-cta {
+      font-size: 14px; font-weight: 500; color: #000;
+      background: var(--cta-green); border: 1px solid var(--cta-border); border-radius: 70px;
+      padding: 0 16px; height: 32px; display: flex; align-items: center; text-decoration: none; transition: background 0.2s; margin: 6px 0;
+    }
+    @media (min-width: 1100px) { .header-cta { font-size: 16px; padding: 0 24px; height: 42px; margin: 7px 0; } }
+    .header-cta:hover { background: var(--cta-green-hover); }
+    .header-spacer { height: 60px; }
+    @media (min-width: 768px) { .header-spacer { height: 65px; } }
+    @media (min-width: 1100px) { .header-spacer { height: 84px; } }
+    @media (max-width: 1099px) { .nav-links { display: none; } }
+    @media (max-width: 1100px) { .header-burger { display: flex !important; margin-left: 6px; } }
+    @media (min-width: 1101px) { .header-burger { display: none !important; } .mobile-menu { display: none !important; } }
+    .header-burger {
+      display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; min-width: 40px; padding: 0;
+      border: none; border-radius: 50%; background: #f0f0f0; color: #000; cursor: pointer; flex-shrink: 0;
+    }
+    .header-burger:hover { background: #e5e5e5; }
+    .header-burger svg { width: 20px; height: 20px; }
+    .header-burger[aria-expanded="true"] .header-burger-open { display: none; }
+    .header-burger[aria-expanded="true"] .header-burger-close { display: block; }
+    .header-burger-close { display: none; }
+    .mobile-menu { position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.4); opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; }
+    .mobile-menu.is-open { opacity: 1; visibility: visible; }
+    .mobile-menu-panel { position: absolute; top: 60px; left: 8px; right: 8px; max-width: 320px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 0.5rem 0; transform: translateY(-8px); transition: transform 0.2s; }
+    .mobile-menu.is-open .mobile-menu-panel { transform: translateY(0); }
+    .mobile-menu a { display: block; padding: 1rem 1.25rem; font-size: 1rem; font-weight: 400; color: #000; text-decoration: none; transition: background 0.15s; }
+    .mobile-menu a:hover { background: #f5f5f5; }
+    .page-section { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+    .section-title { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .section-heading { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .project-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.1); transform: translateY(-4px); }
+    .project-card-body { padding: 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .project-card-title { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .project-card-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .project-card-revenue { font-size: 0.9rem; font-weight: 600; color: var(--accent-orange); margin-bottom: 0.75rem; }
+    .project-card-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem; flex: 1; }
+    .project-card .btn-go {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+      background: var(--cta-green);
+      border: 1px solid var(--cta-border);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .project-card .btn-go:hover { background: var(--cta-green-hover); transform: scale(1.02); }
+    footer { margin-top: 4rem; padding: 2.5rem 2rem; border-top: 1px solid var(--border); text-align: center; }
+    .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; }
+    .footer-logo { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em; color: var(--text-primary); }
+    .footer-divider { width: 1px; height: 1rem; background: var(--border); }
+    .footer-link { font-size: 0.85rem; letter-spacing: 0.03em; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .footer-link:hover { color: var(--text-primary); }
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <header class="header-nav">
+      <a href="index.html" class="logo" title="Anikeev Lab">
+        <span class="logo-icon" aria-hidden="true">
+          <svg width="302" height="302" viewBox="0 0 302 302" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="151" cy="151" r="151" fill="#F36224"/>
+            <rect x="50" y="207.502" width="165" height="22" rx="11" transform="rotate(-60.4247 50 207.502)" fill="white"/>
+            <rect x="86.1795" y="140" width="100.007" height="22" rx="11" transform="rotate(0.467427 86.1795 140)" fill="white"/>
+            <rect width="165" height="22" rx="11" transform="matrix(0.493567 0.869708 0.869708 -0.493567 121 74.8585)" fill="white"/>
+            <rect width="147.999" height="19.5689" rx="9.78445" transform="matrix(0.487492 -0.873127 0.866217 0.499668 110 208.222)" fill="#F8F5F5"/>
+            <rect width="88.5986" height="19.8108" rx="9.90539" transform="matrix(0.999966 0.00829217 -0.0080261 0.999968 142.052 147.437)" fill="#F8F5F5"/>
+            <rect width="147.999" height="19.5689" rx="9.78445" transform="matrix(0.487492 0.873127 0.866217 -0.499668 172.901 88.7779)" fill="#F8F5F5"/>
+          </svg>
+        </span>
+        Anikeev Lab
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#departments">Departments <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg></a>
+        <a href="index.html#junior">Junior Corps <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg></a>
+        <a href="index.html#tech">Tech <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg></a>
+        <a href="services.html">Services <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg></a>
+        <a href="about.html">About <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg></a>
+        <a href="projects.html">Projects <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg></a>
+      </nav>
+      <div class="header-right">
+        <a href="mailto:hello@anikeevlab.com" class="header-cta">Start Building</a>
+        <button class="header-burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="header-burger-open" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+          <span class="header-burger-close" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+        </button>
+      </div>
+    </header>
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Навигация" aria-modal="true">
+      <div class="mobile-menu-panel">
+        <a href="index.html#departments">Projects (главная)</a>
+        <a href="index.html#junior">Junior Corps</a>
+        <a href="index.html#tech">Tech</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Проекты (каталог)</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-spacer"></div>
+
+  <main>
+    <section class="page-section">
+      <p class="section-title">Portfolio</p>
+      <h2 class="section-heading">Проекты</h2>
+      <p style="margin-bottom: 2rem; color: var(--text-secondary); max-width: 640px;">Кейсы с датой запуска, оценкой выручки и описанием. Кнопка «Перейти» открывает подробную страницу проекта в новой вкладке.</p>
+
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Agro Careers Bot (Карьера в Агро)</h3>
+            <p class="project-card-meta">Март 2023</p>
+            <p class="project-card-revenue">Выручка: 800 000 – 1 500 000 ₽/год</p>
+            <p class="project-card-desc">Тесты по специальностям, рекомендации по вузам и вакансиям для аграриев. B2B для Минсельхоза, агрохолдингов, центров занятости.</p>
+            <a href="projects/Agro/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">AlfaBank Bot — запись в отделения</h3>
+            <p class="project-card-meta">Сентябрь 2022</p>
+            <p class="project-card-revenue">Выручка: 1 200 000 – 2 500 000 ₽/год</p>
+            <p class="project-card-desc">Запись и талоны в отделения банка, выбор языка, админ-панель для списка посетителей. Для банков и сетей с офисами приёма.</p>
+            <a href="projects/Alfa/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">ChatGuard Bot — модерация чатов с ИИ</h3>
+            <p class="project-card-meta">Июль 2023</p>
+            <p class="project-card-revenue">Выручка: 600 000 – 1 200 000 ₽/год</p>
+            <p class="project-card-desc">Очередь, передача контактов, статус ожидания. Админ-панель и уведомления. Для крупных каналов и комьюнити-менеджеров.</p>
+            <a href="projects/Chat/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Discord Parser</h3>
+            <p class="project-card-meta">Ноябрь 2023</p>
+            <p class="project-card-revenue">Выручка: 500 000 – 1 000 000 ₽/год</p>
+            <p class="project-card-desc">Парсинг сообщений, ежедневные отчёты с ИИ-резюме и темами. Для аналитиков, маркетологов и владельцев серверов.</p>
+            <a href="projects/DiscordParser/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">EgeHelperBot — ИИ-помощник к ЕГЭ</h3>
+            <p class="project-card-meta">Январь 2024</p>
+            <p class="project-card-revenue">Выручка: 1 000 000 – 2 000 000 ₽/год</p>
+            <p class="project-card-desc">Разбор заданий по математике и другим предметам, история запросов. Для онлайн-школ и репетиторских сервисов.</p>
+            <a href="projects/EgeHelperBot/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">FakeRadar — детектор дипфейков</h3>
+            <p class="project-card-meta">Май 2024</p>
+            <p class="project-card-revenue">Выручка: 2 000 000 – 5 000 000 ₽/год</p>
+            <p class="project-card-desc">Проверка видео на дипфейк в реальном времени. API для СМИ, финтеха и платформ контента.</p>
+            <a href="projects/FakeRadar/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Screen Geolocation</h3>
+            <p class="project-card-meta">Август 2023</p>
+            <p class="project-card-revenue">Выручка: 300 000 – 700 000 ₽/год</p>
+            <p class="project-card-desc">Определение места по скриншоту (Street View). Для OSINT, журналистов и учебных курсов по геолокации.</p>
+            <a href="projects/Geo/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">TalentForm (HH) — тесты и аналитика для HR</h3>
+            <p class="project-card-meta">Апрель 2023</p>
+            <p class="project-card-revenue">Выручка: 1 500 000 – 3 000 000 ₽/год</p>
+            <p class="project-card-desc">Тесты кандидатов, ИИ-оценка, аналитика. SaaS для HR-департаментов и рекрутинговых агентств.</p>
+            <a href="projects/HH/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">HSE Essay Bot — проверка эссе по стандартам ВШЭ</h3>
+            <p class="project-card-meta">Декабрь 2023</p>
+            <p class="project-card-revenue">Выручка: 700 000 – 1 500 000 ₽/год</p>
+            <p class="project-card-desc">Скоринг по критериям (РКЗ, логика, лексика, грамматика), разбор ошибок. Для лицеев, репетиторов и приёмных комиссий.</p>
+            <a href="projects/HSE_Essay_Bot/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">IQ Mini-Quiz</h3>
+            <p class="project-card-meta">Февраль 2023</p>
+            <p class="project-card-revenue">Выручка: 400 000 – 900 000 ₽/год</p>
+            <p class="project-card-desc">Короткий тест на логику, оценка IQ. Для HR, психологических сервисов и развлекательных приложений.</p>
+            <a href="projects/IQ/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Сайт для музыканта LhPipr</h3>
+            <p class="project-card-meta">Июнь 2022</p>
+            <p class="project-card-revenue">Выручка: 200 000 – 500 000 ₽/год</p>
+            <p class="project-card-desc">Промо-лендинг: плеер, соцсети, стриминг. Для музыкантов, лейблов и артистов.</p>
+            <a href="projects/LhPipr/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Order Bot — конструктор заказа разработки</h3>
+            <p class="project-card-meta">Октябрь 2024</p>
+            <p class="project-card-revenue">Выручка: 500 000 – 1 200 000 ₽/год</p>
+            <p class="project-card-desc">Сборка заказа: Mini App, оплаты, ИИ-агент, рассылки, скидки. Для фрилансеров и студий.</p>
+            <a href="projects/Order_bot/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Interactive Portfolio (Mini App)</h3>
+            <p class="project-card-meta">Март 2024</p>
+            <p class="project-card-revenue">Выручка: 300 000 – 800 000 ₽/год</p>
+            <p class="project-card-desc">Интерактивное портфолио в Telegram: карточки кейсов, лид-форма. Для разработчиков и студий.</p>
+            <a href="projects/Progects/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Project Manager Bot — управление Python-проектами</h3>
+            <p class="project-card-meta">Сентябрь 2024</p>
+            <p class="project-card-revenue">Выручка: 800 000 – 1 800 000 ₽/год</p>
+            <p class="project-card-desc">Старт/стоп проектов, логи, обновление с GitHub, .env, выбор точки входа. Для DevOps и команд с несколькими сервисами.</p>
+            <a href="projects/Project%20Manager%20Bot/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Rubkoff — конфигуратор деревянных домов</h3>
+            <p class="project-card-meta">Май 2023</p>
+            <p class="project-card-revenue">Выручка: 1 000 000 – 2 500 000 ₽/год</p>
+            <p class="project-card-desc">Опрос параметров в боте, Mini App с рекомендациями и стоимостью. Для застройщиков и производителей домокомплектов.</p>
+            <a href="projects/Rubkoff/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Save — локальное версионирование файлов</h3>
+            <p class="project-card-meta">Январь 2023</p>
+            <p class="project-card-revenue">Выручка: 250 000 – 600 000 ₽/год</p>
+            <p class="project-card-desc">Версии без Git: создание, просмотр истории, восстановление. Для разработчиков-одиночек и авторов контента.</p>
+            <a href="projects/Save/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">SchoolHelper — ИИ-помощник по ДЗ по фото</h3>
+            <p class="project-card-meta">Ноябрь 2023</p>
+            <p class="project-card-revenue">Выручка: 1 200 000 – 2 500 000 ₽/год</p>
+            <p class="project-card-desc">Фото задания — пошаговое решение по предмету (Gemini). Для онлайн-школ, репетиторов и родителей.</p>
+            <a href="projects/SchoolHelper/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-body">
+            <h3 class="project-card-title">Стихия Слова</h3>
+            <p class="project-card-meta">Апрель 2022</p>
+            <p class="project-card-revenue">Выручка: 400 000 – 900 000 ₽/год</p>
+            <p class="project-card-desc">Бот для литературного сообщества: очередь заявок, платное «Эхо», модерация, публикация в группу, обратная связь авторам.</p>
+            <a href="projects/Stikhiya_slova/" class="btn-go" target="_blank" rel="noopener">Перейти</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <span class="footer-logo">Anikeev Lab</span>
+      <span class="footer-divider"></span>
+      <a href="https://github.com/Alexaaanik" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub @Alexaaanik</a>
+    </div>
+  </footer>
+  <script>
+    (function() {
+      var burger = document.querySelector('.header-burger');
+      var menu = document.getElementById('mobile-menu');
+      if (!burger || !menu) return;
+      function openMenu() { menu.classList.add('is-open'); burger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; }
+      function closeMenu() { menu.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+      burger.addEventListener('click', function() { if (menu.classList.contains('is-open')) closeMenu(); else openMenu(); });
+      menu.addEventListener('click', function(e) { if (e.target === menu) closeMenu(); });
+      menu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu(); });
+    })();
+  </script>
+</body>
+</html>

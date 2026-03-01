@@ -435,6 +435,111 @@
       margin-top: 0.5rem;
     }
 
+    /* Pricing — слайд в стиле Base44 */
+    #pricing {
+      padding-top: 4rem;
+      padding-bottom: 5rem;
+    }
+    #pricing .pricing-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    #pricing .pricing-header .section-title {
+      margin-bottom: 0.5rem;
+    }
+    #pricing .pricing-heading {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    #pricing .pricing-sub {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+    .pricing-card:hover {
+      background: #fff;
+      border-color: rgba(0, 0, 0, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+    }
+    .pricing-card.pricing-card--flagship {
+      border-color: var(--accent-orange);
+      box-shadow: 0 2px 16px rgba(255, 99, 31, 0.12);
+    }
+    .pricing-card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+    .pricing-card-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      margin-bottom: 0.5rem;
+    }
+    .pricing-card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    .pricing-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .pricing-card-meta strong {
+      color: var(--accent-orange);
+      font-weight: 600;
+    }
+    .pricing-card .pricing-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #000;
+      background: var(--cta-green);
+      border: 1px solid var(--cta-border);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: auto;
+    }
+    .pricing-card .pricing-cta:hover {
+      background: var(--cta-green-hover);
+      transform: scale(1.02);
+    }
+
     /* Заголовок «От хаоса к системе» — постоянный зазор до блоков при скролле; после «сложения» уезжает вверх */
     #departments .cases-section-header {
       position: sticky;
@@ -872,7 +977,14 @@
         <a href="#junior">Junior Corps
           <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg>
         </a>
-        <a href="#tech">Tech
+        <a href="#tech">Tech <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg></a>
+        <a href="services.html">Services
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg>
+        </a>
+        <a href="about.html">About
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg>
+        </a>
+        <a href="projects.html">Projects
           <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5 8 5 5 5-5"/></svg>
         </a>
       </nav>
@@ -899,11 +1011,14 @@
         </button>
       </div>
     </header>
-  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Навигация" aria-modal="true">
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Навигация" aria-modal="true">
     <div class="mobile-menu-panel">
-      <a href="#departments">Projects</a>
+      <a href="#departments">Projects (главная)</a>
       <a href="#junior">Junior Corps</a>
       <a href="#tech">Tech</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Проекты (каталог)</a>
     </div>
   </div>
   </div>
@@ -1036,11 +1151,78 @@
         </div>
       </div>
     </section>
+
+    <section id="pricing">
+      <div class="pricing-header">
+        <p class="section-title">Pricing</p>
+        <h2 class="pricing-heading">Тарифы под вашу задачу</h2>
+        <p class="pricing-sub">От бота до сложного продукта. Фиксируем срок и бюджет — без скрытых платежей.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="pricing-card pricing-card--flagship">
+          <span class="pricing-card-badge">Флагман</span>
+          <h3 class="pricing-card-title">Telegram Mini Apps (TMA)</h3>
+          <p class="pricing-card-desc">Полноценные веб-приложения в Telegram: e-commerce, лояльность, подписки.</p>
+          <div class="pricing-card-meta">
+            <span><strong>от $1,500 – $2,000</strong></span>
+            <span>3–6 недель</span>
+          </div>
+          <a href="mailto:hello@anikeevlab.com?subject=Запрос: Telegram Mini App" class="pricing-cta">Обсудить проект</a>
+        </article>
+        <article class="pricing-card">
+          <h3 class="pricing-card-title">Telegram Bots & Automation</h3>
+          <p class="pricing-card-desc">Сложные боты, автоматизация, интеграция с CRM и API.</p>
+          <div class="pricing-card-meta">
+            <span><strong>от $600 – $1,000</strong></span>
+            <span>1–3 недели</span>
+          </div>
+          <a href="mailto:hello@anikeevlab.com?subject=Запрос: Telegram Bot" class="pricing-cta">Обсудить проект</a>
+        </article>
+        <article class="pricing-card">
+          <h3 class="pricing-card-title">Web Development & Sites</h3>
+          <p class="pricing-card-desc">Лендинги и корпоративные порталы. SEO, скорость, ваш стек.</p>
+          <div class="pricing-card-meta">
+            <span><strong>от $800 – $2,500+</strong></span>
+            <span>от 1 недели</span>
+          </div>
+          <a href="mailto:hello@anikeevlab.com?subject=Запрос: Веб-разработка" class="pricing-cta">Обсудить проект</a>
+        </article>
+        <article class="pricing-card">
+          <h3 class="pricing-card-title">AI Integration & Automation</h3>
+          <p class="pricing-card-desc">GPT-4, Gemini, RAG, кастомные агенты в бизнес-процессах.</p>
+          <div class="pricing-card-meta">
+            <span><strong>от $1,500</strong></span>
+            <span>2–4 недели</span>
+          </div>
+          <a href="mailto:hello@anikeevlab.com?subject=Запрос: Интеграция ИИ" class="pricing-cta">Обсудить проект</a>
+        </article>
+        <article class="pricing-card">
+          <h3 class="pricing-card-title">Computer Vision</h3>
+          <p class="pricing-card-desc">Распознавание лиц и объектов, анализ видеопотока, OpenCV.</p>
+          <div class="pricing-card-meta">
+            <span><strong>от $2,500</strong></span>
+            <span>от 4 недель</span>
+          </div>
+          <a href="mailto:hello@anikeevlab.com?subject=Запрос: Computer Vision" class="pricing-cta">Обсудить проект</a>
+        </article>
+        <article class="pricing-card">
+          <h3 class="pricing-card-title">Консалтинг и архитектура</h3>
+          <p class="pricing-card-desc">Аудит, выбор стека, проектирование БД и инфраструктуры.</p>
+          <div class="pricing-card-meta">
+            <span><strong>$150 – $250/час</strong></span>
+            <span>или $1,000 за план</span>
+          </div>
+          <a href="mailto:hello@anikeevlab.com?subject=Запрос: Консалтинг" class="pricing-cta">Обсудить проект</a>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="footer-content">
       <span class="footer-logo">Anikeev Lab</span>
+      <span class="footer-divider"></span>
+      <a href="privacy.html" class="footer-link">Privacy</a>
       <span class="footer-divider"></span>
       <a href="https://github.com/Alexaaanik" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub @Alexaaanik</a>
     </div>

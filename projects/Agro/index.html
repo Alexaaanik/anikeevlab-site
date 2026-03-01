@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agro Careers Bot — Anikeev Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    :root { --text-primary: #1a1a1a; --text-secondary: #4a4a4a; --text-muted: #6b7280; --border: rgba(0,0,0,0.08); --cta-green: #ebffb1; --cta-green-hover: #e0fe92; --cta-border: #ade900; --accent-orange: #FF631F; --header-border: #e6e6e6; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Geologica', sans-serif; background: radial-gradient(42.4% 36.95% at 50% 50%, rgba(250,249,247,0.7) 0%, rgba(250,249,247,0) 100%), radial-gradient(97.22% 78.13% at 50% -17.36%, #5DB3CF 22.39%, rgba(145,201,220,0.56) 58.43%, rgba(250,249,247,0) 85.73%), linear-gradient(180deg, #22C9FF -26.16%, #FAF9F7 23.98%); color: var(--text-primary); line-height: 1.6; min-height: 100vh; }
+    .header-nav { position: fixed; top: 8px; left: 8px; right: 8px; height: 44px; display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid var(--header-border); border-radius: 100px; padding: 0 12px; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 6px; font-size: 16px; color: #000; text-decoration: none; }
+    .logo svg { width: 24px; height: 24px; }
+    .nav-mini { display: flex; gap: 8px; font-size: 14px; }
+    .nav-mini a { color: #000; text-decoration: none; }
+    .header-spacer { height: 60px; }
+    .page { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .project-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; margin-bottom: 0.5rem; }
+    .project-meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .project-revenue { font-size: 1rem; font-weight: 600; color: var(--accent-orange); margin-bottom: 1.5rem; }
+    .project-desc { font-size: 1rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 2rem; }
+    .project-desc p { margin-bottom: 0.75rem; }
+    .gallery { display: flex; flex-direction: column; gap: 1.5rem; }
+    .gallery figure { margin: 0; }
+    .gallery img { width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); display: block; }
+    .gallery figcaption { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.4; }
+    footer { margin-top: 3rem; padding: 1.5rem; text-align: center; border-top: 1px solid var(--border); }
+    footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header class="header-nav">
+    <a href="../../index.html" class="logo">Anikeev Lab</a>
+    <nav class="nav-mini">
+      <a href="../../projects.html">← Все проекты</a>
+    </nav>
+  </header>
+  <div class="header-spacer"></div>
+  <main class="page">
+    <h1 class="project-title">Agro Careers Bot (Карьера в Агро)</h1>
+    <p class="project-meta">Март 2023</p>
+    <p class="project-revenue">Выручка: 800 000 – 1 500 000 ₽/год</p>
+    <div class="project-desc">
+      <p>Тесты по специальностям, карточки с описанием, прохождение теста, рекомендации по результатам и список подходящих вузов. Дополнительно — вакансии или обучение.</p>
+      <p><strong>Потенциальный покупатель:</strong> Минсельхоз, агрохолдинги, центры занятости, образовательные платформы для аграриев, рекрутинг в АПК.</p>
+    </div>
+    <div class="gallery">
+      <figure><img src="photo_1.jpg" alt="Приветствие и главное меню"><figcaption>Общий вид бота: приветствие и главное меню.</figcaption></figure>
+      <figure><img src="photo_2.jpg" alt="Выбор теста"><figcaption>Шаг 1. Главное меню и выбор теста по специальностям.</figcaption></figure>
+      <figure><img src="photo_3.jpg" alt="Карточка специальности"><figcaption>Шаг 2. Карточка специальности с описанием.</figcaption></figure>
+      <figure><img src="photo_4.jpg" alt="Список тестов"><figcaption>Дополнительный экран: список тестов или категорий.</figcaption></figure>
+      <figure><img src="photo_5.jpg" alt="Пример вопроса"><figcaption>Прохождение теста: пример вопроса.</figcaption></figure>
+      <figure><img src="photo_6.jpg" alt="Экран тестирования"><figcaption>Промежуточный или итоговый экран тестирования.</figcaption></figure>
+      <figure><img src="photo_7.jpg" alt="Рекомендации"><figcaption>Рекомендации по результатам теста.</figcaption></figure>
+      <figure><img src="photo_8.jpg" alt="Результаты"><figcaption>Шаг 3. Результаты теста и рекомендации.</figcaption></figure>
+      <figure><img src="photo_9.jpg" alt="Список вузов"><figcaption>Шаг 4. Список подходящих вузов.</figcaption></figure>
+      <figure><img src="photo_10.jpg" alt="Вакансии или обучение"><figcaption>Дополнительная информация: вакансии или обучение.</figcaption></figure>
+    </div>
+  </main>
+  <footer><a href="../../projects.html">← Все проекты</a></footer>
+</body>
+</html>
